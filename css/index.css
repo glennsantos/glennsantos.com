@@ -7,6 +7,10 @@
   --light-accent-color: #ccc;
   --accent-color: #abbaab;
   --blue-color: #2980b9;
+  /* Brand colors */
+  --linkedin-blue: #0A66C2;
+  --glassdoor-green: #0CAA41;
+  --email-orange: #FF8A00;
 }
 @keyframes first-about-me-animation {
   0% {
@@ -247,7 +251,6 @@ section {
   transition: All 1s;
 }
 #about-me-section {
-  width: 75%;
   line-height: 1.7em;
 }
 section h2 {
@@ -290,6 +293,7 @@ section h2 {
   opacity: 0.7;
   box-shadow: 5px 5px 0px 3px, 0px 0px 0px 3px;
   border: none;
+  border-radius: 8px;
 }
 #about-me-section a:hover, #contact-top:hover {
   transition: all 0.4s;
@@ -312,6 +316,7 @@ section h2 {
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  margin: 1em;
 }
 
 #skills-section article > section {
@@ -341,6 +346,28 @@ section h2 {
 #links-section > div > *:hover {
   opacity: 1;
 }
+
+/* Brand-colored links */
+#links-section .link-email {
+  color: var(--email-orange);
+  border-color: var(--email-orange);
+  box-shadow: 5px 5px 0px 2px var(--email-orange);
+}
+#links-section .link-linkedin {
+  color: var(--linkedin-blue);
+  border-color: var(--linkedin-blue);
+  box-shadow: 5px 5px 0px 2px var(--linkedin-blue);
+}
+#links-section .link-resume {
+  color: var(--glassdoor-green);
+  border-color: var(--glassdoor-green);
+  box-shadow: 5px 5px 0px 2px var(--glassdoor-green);
+}
+
+/* Keep brand color on hover */
+#links-section .link-email:hover { color: var(--email-orange); border-color: var(--email-orange); }
+#links-section .link-linkedin:hover { color: var(--linkedin-blue); border-color: var(--linkedin-blue); }
+#links-section .link-resume:hover { color: var(--glassdoor-green); border-color: var(--glassdoor-green); }
 
 article {
   display: grid;
@@ -443,6 +470,12 @@ article li {
   position: relative;
   top: -2px;
 }
+
+#projects-wrapper > div > div > h3 {
+  font-size: 1.8em;
+  margin: 0;
+}
+
 #projects-wrapper img {
   /* Keep aspect ratio; sized to fit two-column cards */
   order: -1; /* Show image first in the card */
@@ -451,11 +484,13 @@ article li {
   height: 220px;
   object-fit: cover;
   object-position: bottom center; /* crop from top, show bottom */
-  padding: 0.5em;
+  padding: 0;
   margin: 0;
   opacity: 1;
   box-shadow: none;
-  border-radius: 16px;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  border-bottom: 1px solid #f4f4f4;
 }
 
 /* Responsive: one column on smaller screens */
@@ -470,12 +505,14 @@ article li {
   #projects-wrapper img {
     width: 100%;
     height: auto;
-    margin: 1em 0;
+    margin: 0;
   }
 }
 .tags {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
 }
 .tags > span {
   margin-right: 1em;
@@ -496,9 +533,12 @@ article li {
 }
 
 #links-section > div {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1em;
+  width: auto;
 }
 
 #links-section > div > * {
@@ -506,6 +546,7 @@ article li {
   box-shadow: 5px 5px 0px 2px var(--light-accent-color);
   padding: 0.5em;
   border: 2px solid var(--light-accent-color);
+  border-radius: 8px;
 }
 #links-section > div > *:hover {
   box-shadow: 0px 0px 0px 0px;
@@ -537,7 +578,8 @@ article li {
 
 footer {
   position: static;
-  margin: 2em;
+  margin: 8em 0 4em;
+  font-size: 0.8em;
 }
 
 #go-back-button {

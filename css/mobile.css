@@ -45,9 +45,8 @@
     }
 
     #projects-wrapper div {
-        align-items: center !important ;
         flex-direction: column;
-        margin: 0em 0em 3em 0em !important;
+        margin: 0em 1em 3em 0em !important;
         width: 97% important;
     }
     
@@ -58,13 +57,12 @@
 
     #projects-wrapper img {
         box-shadow: 0px 0px 0px 0px !important;
-        border-radius: 8px !important;
         width: 100% !important;
         height: auto !important;
         padding: 0 !important;
         margin: 0 !important;
     }
-    
+
     #projects-wrapper > div > div {
         padding-right: 0px !important;
     }
@@ -84,5 +82,15 @@
     }
     .watermark:nth-child(2){
         bottom:3em ;    
+    }
+
+    /* Links: wrap into multiple rows on small screens */
+    #links-section > div {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 0.75em !important;
+        width: 100% !important;
     }
 }
