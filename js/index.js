@@ -1,54 +1,78 @@
-// dark and light mode 
-document.documentElement.style.setProperty('--background-color', '#fafafa');
-function switchDarkLightMode() {
-    let icon = document.querySelector("#switch-container img");
-   
-    icon.onclick = () => {
-    let darkColor = "#111216"; 
-    let darkTextColor = "#999";
-    let darkTextTitleColor = "#eee";
-    let darkTextHoverColor = "#ddd";
-    let darkAccentColor = "#222";
-    icon.onmouseover = () => {
-        console.log("James");
-        icon.setAttribute("src","images/moon-full.svg");
-    }
-    icon.onmouseout = () => {
-        icon.setAttribute("src","images/moon.svg");
-    }
-    let color = getComputedStyle(document.documentElement).getPropertyValue("--background-color");
-    if(color == "#fafafa"){
-        icon.setAttribute("src","images/sun.svg");
-        document.documentElement.style.setProperty('--background-color',darkColor);
-        document.documentElement.style.setProperty('--text-color',darkTextColor);
-        document.documentElement.style.setProperty('--text-title-color',darkTextTitleColor);
-        document.documentElement.style.setProperty('--text-hover-color',darkTextHoverColor);
-        document.documentElement.style.setProperty('--light-accent-color',darkAccentColor);
-        icon.onmouseover = () => {
-                icon.setAttribute("src","images/sun-filled.svg");
-        }
-        icon.onmouseout = () => {
-                icon.setAttribute("src","images/sun.svg");
-        }
-    
-    } else {
-        icon.setAttribute("src","images/moon.svg");
-        document.documentElement.style.setProperty('--background-color', '#fafafa');
-        document.documentElement.style.setProperty('--text-color', '#111');
-        document.documentElement.style.setProperty('--text-hover-color',"#000");
-        document.documentElement.style.setProperty('--text-title-color',"#111");
-        document.documentElement.style.setProperty('--light-accent-color',"#ccc");
+// Persist and apply dark/light theme using localStorage
+// Key used for persistence
+const THEME_STORAGE_KEY = 'theme'; // 'dark' | 'light'
 
-        icon.onmouseover = () => {
-            console.log("James");
-            icon.setAttribute("src","images/moon-full.svg");
-        }
-        icon.onmouseout = () => {
-            icon.setAttribute("src","images/moon.svg");
-        }
-    }
-    }
+// Theme palettes
+const lightTheme = {
+  background: '#fafafa',
+  text: '#111',
+  title: '#111',
+  hover: '#000',
+  accent: '#ccc',
+  icon: {
+    normal: 'images/moon.svg',
+    hover: 'images/moon-full.svg'
+  }
+};
+
+const darkTheme = {
+  background: '#111216',
+  text: '#999',
+  title: '#eee',
+  hover: '#ddd',
+  accent: '#222',
+  icon: {
+    normal: 'images/sun.svg',
+    hover: 'images/sun-filled.svg'
+  }
+};
+
+function applyTheme(themeName) {
+  const t = themeName === 'dark' ? darkTheme : lightTheme;
+  const root = document.documentElement;
+  const icon = document.querySelector('#switch-container img');
+
+  // Set CSS variables
+  root.style.setProperty('--background-color', t.background);
+  root.style.setProperty('--text-color', t.text);
+  root.style.setProperty('--text-title-color', t.title);
+  root.style.setProperty('--text-hover-color', t.hover);
+  root.style.setProperty('--light-accent-color', t.accent);
+
+  // Update icon and hover states
+  if (icon) {
+    icon.setAttribute('src', t.icon.normal);
+    icon.onmouseover = () => icon.setAttribute('src', t.icon.hover);
+    icon.onmouseout = () => icon.setAttribute('src', t.icon.normal);
+  }
+
+  // Persist
+  try { localStorage.setItem(THEME_STORAGE_KEY, themeName); } catch (e) {}
 }
-  
 
-switchDarkLightMode();
+function initThemeToggle() {
+  const icon = document.querySelector('#switch-container img');
+  if (!icon) return;
+
+  // Determine initial theme: saved -> system preference -> light
+  let saved = null;
+  try { saved = localStorage.getItem(THEME_STORAGE_KEY); } catch (e) {}
+  let initialTheme = saved;
+  if (!initialTheme) {
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    initialTheme = prefersDark ? 'dark' : 'light';
+  }
+  applyTheme(initialTheme);
+
+  // Toggle on click
+  icon.onclick = () => {
+    const current = (function() {
+      try { return localStorage.getItem(THEME_STORAGE_KEY) || initialTheme; } catch (e) { return initialTheme; }
+    })();
+    const next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+  };
+}
+
+// Initialize on load (script is at end of body)
+initThemeToggle();
