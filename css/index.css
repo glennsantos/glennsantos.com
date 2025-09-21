@@ -11,6 +11,7 @@
   --linkedin-blue: #0A66C2;
   --glassdoor-green: #0CAA41;
   --email-orange: #FF8A00;
+  --header-orange: #ea6900;
 }
 @keyframes first-about-me-animation {
   0% {
@@ -255,6 +256,10 @@ section {
 }
 section h2 {
   color: var(--text-title-color);
+}
+/* Make the About section headline ("Hello, I’m Glenn!") orange */
+#about-me-section h2 {
+  color: var(--header-orange);
 }
 #about-me-intro-section {
   font-size: 0.8em;
