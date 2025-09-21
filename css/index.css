@@ -11,7 +11,6 @@
   --linkedin-blue: #0A66C2;
   --glassdoor-green: #0CAA41;
   --email-orange: #FF8A00;
-  --header-orange: #ea6900;
 }
 @keyframes first-about-me-animation {
   0% {
@@ -259,7 +258,8 @@ section h2 {
 }
 /* Make the About section headline ("Hello, I’m Glenn!") orange */
 #about-me-section h2 {
-  color: var(--header-orange);
+  color: var(--email-orange);
+  font-size: 3em;
 }
 #about-me-intro-section {
   font-size: 0.8em;
@@ -342,7 +342,6 @@ section h2 {
 
 #links-section > div > * {
   min-width: max-content;
-  opacity: 0.5;
   margin-right: 2em;
   font-weight: 700;
   font-size: 1.5em;
@@ -555,9 +554,7 @@ article li {
 }
 #links-section > div > *:hover {
   box-shadow: 0px 0px 0px 0px;
-  border: 2px solid var(--text-color);
-  color: var(--text-color);
-  background-color: var(--light-accent-color);
+  background-color: transparent;
   transition: all 0.4s;
 }
 
