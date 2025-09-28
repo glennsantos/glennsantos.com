@@ -19,6 +19,43 @@
         .results-card {
             border-top: 8px solid #10b981;
         }
+        /* Custom Slider Styles */
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            background: #e5e7eb; /* gray-200 */
+            outline: none;
+            opacity: 0.8;
+            transition: opacity .2s;
+            border-radius: 9999px;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #4f46e5; /* indigo-600 */
+            cursor: pointer;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: #4f46e5; /* indigo-600 */
+            cursor: pointer;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -37,23 +74,19 @@
                 <h2 class="text-2xl font-semibold text-gray-700 mb-4 pb-2 border-b-2 border-indigo-200">1. Technical Credibility</h2>
                 <div class="bg-white rounded-lg shadow-md p-6 space-y-6 question-card">
                     <div class="question" data-category="tech">
-                        <p class="font-semibold text-lg mb-2">I maintain sufficient technical knowledge to understand our systems and guide architectural decisions.</p>
-                        <div class="flex flex-wrap -mx-2 rating-group">
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q1" value="1" class="mr-2" required>Strongly Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q1" value="2" class="mr-2">Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q1" value="3" class="mr-2">Neutral</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q1" value="4" class="mr-2">Agree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q1" value="5" class="mr-2">Strongly Agree</label>
+                        <p class="font-semibold text-lg mb-2">My current technical knowledge allows me to effectively contribute to and guide system and architectural decisions.</p>
+                        <div class="flex items-center space-x-4 rating-group pt-2">
+                            <span class="text-sm text-gray-500 w-28 text-left">Strongly Disagree</span>
+                            <input type="range" name="q1" min="1" max="7" value="4" class="w-full slider" required>
+                            <span class="text-sm text-gray-500 w-28 text-right">Strongly Agree</span>
                         </div>
                     </div>
                     <div class="question" data-category="tech">
-                        <p class="font-semibold text-lg mb-2">I effectively balance my technical responsibilities with my management duties.</p>
-                        <div class="flex flex-wrap -mx-2 rating-group">
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q2" value="1" class="mr-2" required>Strongly Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q2" value="2" class="mr-2">Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q2" value="3" class="mr-2">Neutral</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q2" value="4" class="mr-2">Agree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q2" value="5" class="mr-2">Strongly Agree</label>
+                        <p class="font-semibold text-lg mb-2">I allocate my time between technical and management responsibilities in a way that best serves the team's needs.</p>
+                        <div class="flex items-center space-x-4 rating-group pt-2">
+                            <span class="text-sm text-gray-500 w-28 text-left">Strongly Disagree</span>
+                            <input type="range" name="q2" min="1" max="7" value="4" class="w-full slider" required>
+                            <span class="text-sm text-gray-500 w-28 text-right">Strongly Agree</span>
                         </div>
                     </div>
                 </div>
@@ -64,23 +97,19 @@
                 <h2 class="text-2xl font-semibold text-gray-700 mb-4 pb-2 border-b-2 border-indigo-200">2. Growth & Development Support</h2>
                 <div class="bg-white rounded-lg shadow-md p-6 space-y-6 question-card">
                     <div class="question" data-category="growth">
-                        <p class="font-semibold text-lg mb-2">I actively invest in my team's professional advancement and skill development.</p>
-                        <div class="flex flex-wrap -mx-2 rating-group">
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q3" value="1" class="mr-2" required>Strongly Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q3" value="2" class="mr-2">Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q3" value="3" class="mr-2">Neutral</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q3" value="4" class="mr-2">Agree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q3" value="5" class="mr-2">Strongly Agree</label>
+                        <p class="font-semibold text-lg mb-2">My team members are provided with clear opportunities and resources for professional growth and skill development.</p>
+                        <div class="flex items-center space-x-4 rating-group pt-2">
+                            <span class="text-sm text-gray-500 w-28 text-left">Strongly Disagree</span>
+                            <input type="range" name="q3" min="1" max="7" value="4" class="w-full slider" required>
+                            <span class="text-sm text-gray-500 w-28 text-right">Strongly Agree</span>
                         </div>
                     </div>
                     <div class="question" data-category="growth">
-                        <p class="font-semibold text-lg mb-2">I provide consistent mentorship and actionable career guidance to my direct reports.</p>
-                        <div class="flex flex-wrap -mx-2 rating-group">
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q4" value="1" class="mr-2" required>Strongly Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q4" value="2" class="mr-2">Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q4" value="3" class="mr-2">Neutral</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q4" value="4" class="mr-2">Agree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q4" value="5" class="mr-2">Strongly Agree</label>
+                        <p class="font-semibold text-lg mb-2">My direct reports receive regular, helpful guidance regarding their career paths and development.</p>
+                        <div class="flex items-center space-x-4 rating-group pt-2">
+                            <span class="text-sm text-gray-500 w-28 text-left">Strongly Disagree</span>
+                            <input type="range" name="q4" min="1" max="7" value="4" class="w-full slider" required>
+                            <span class="text-sm text-gray-500 w-28 text-right">Strongly Agree</span>
                         </div>
                     </div>
                 </div>
@@ -91,23 +120,19 @@
                 <h2 class="text-2xl font-semibold text-gray-700 mb-4 pb-2 border-b-2 border-indigo-200">3. Clear Communication & Strategic Alignment</h2>
                 <div class="bg-white rounded-lg shadow-md p-6 space-y-6 question-card">
                     <div class="question" data-category="comm">
-                        <p class="font-semibold text-lg mb-2">I successfully translate ambiguous business goals into clear, actionable technical direction for my team.</p>
-                        <div class="flex flex-wrap -mx-2 rating-group">
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q5" value="1" class="mr-2" required>Strongly Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q5" value="2" class="mr-2">Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q5" value="3" class="mr-2">Neutral</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q5" value="4" class="mr-2">Agree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q5" value="5" class="mr-2">Strongly Agree</label>
+                        <p class="font-semibold text-lg mb-2">My team has a clear understanding of the technical direction and how it connects to our business objectives.</p>
+                        <div class="flex items-center space-x-4 rating-group pt-2">
+                            <span class="text-sm text-gray-500 w-28 text-left">Strongly Disagree</span>
+                            <input type="range" name="q5" min="1" max="7" value="4" class="w-full slider" required>
+                            <span class="text-sm text-gray-500 w-28 text-right">Strongly Agree</span>
                         </div>
                     </div>
                     <div class="question" data-category="comm">
-                        <p class="font-semibold text-lg mb-2">I ensure my team understands how their technical work connects to broader business outcomes.</p>
-                        <div class="flex flex-wrap -mx-2 rating-group">
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q6" value="1" class="mr-2" required>Strongly Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q6" value="2" class="mr-2">Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q6" value="3" class="mr-2">Neutral</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q6" value="4" class="mr-2">Agree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q6" value="5" class="mr-2">Strongly Agree</label>
+                        <p class="font-semibold text-lg mb-2">Team members can articulate how their individual work contributes to the company's broader goals.</p>
+                        <div class="flex items-center space-x-4 rating-group pt-2">
+                            <span class="text-sm text-gray-500 w-28 text-left">Strongly Disagree</span>
+                            <input type="range" name="q6" min="1" max="7" value="4" class="w-full slider" required>
+                            <span class="text-sm text-gray-500 w-28 text-right">Strongly Agree</span>
                         </div>
                     </div>
                 </div>
@@ -118,23 +143,19 @@
                 <h2 class="text-2xl font-semibold text-gray-700 mb-4 pb-2 border-b-2 border-indigo-200">4. Autonomy & Trust</h2>
                 <div class="bg-white rounded-lg shadow-md p-6 space-y-6 question-card">
                     <div class="question" data-category="autonomy">
-                        <p class="font-semibold text-lg mb-2">I empower my engineers to own their work and make independent decisions.</p>
-                        <div class="flex flex-wrap -mx-2 rating-group">
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q7" value="1" class="mr-2" required>Strongly Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q7" value="2" class="mr-2">Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q7" value="3" class="mr-2">Neutral</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q7" value="4" class="mr-2">Agree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q7" value="5" class="mr-2">Strongly Agree</label>
+                        <p class="font-semibold text-lg mb-2">Engineers on my team have the autonomy to make decisions within their areas of ownership.</p>
+                        <div class="flex items-center space-x-4 rating-group pt-2">
+                            <span class="text-sm text-gray-500 w-28 text-left">Strongly Disagree</span>
+                            <input type="range" name="q7" min="1" max="7" value="4" class="w-full slider" required>
+                            <span class="text-sm text-gray-500 w-28 text-right">Strongly Agree</span>
                         </div>
                     </div>
                     <div class="question" data-category="autonomy">
-                        <p class="font-semibold text-lg mb-2">I avoid micromanaging and instead focus on outcomes and impact.</p>
-                        <div class="flex flex-wrap -mx-2 rating-group">
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q8" value="1" class="mr-2" required>Strongly Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q8" value="2" class="mr-2">Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q8" value="3" class="mr-2">Neutral</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q8" value="4" class="mr-2">Agree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q8" value="5" class="mr-2">Strongly Agree</label>
+                        <p class="font-semibold text-lg mb-2">My management style focuses on results and impact, giving engineers space to determine their own implementation details.</p>
+                        <div class="flex items-center space-x-4 rating-group pt-2">
+                            <span class="text-sm text-gray-500 w-28 text-left">Strongly Disagree</span>
+                            <input type="range" name="q8" min="1" max="7" value="4" class="w-full slider" required>
+                            <span class="text-sm text-gray-500 w-28 text-right">Strongly Agree</span>
                         </div>
                     </div>
                 </div>
@@ -145,23 +166,19 @@
                 <h2 class="text-2xl font-semibold text-gray-700 mb-4 pb-2 border-b-2 border-indigo-200">5. Positive Work Environment</h2>
                 <div class="bg-white rounded-lg shadow-md p-6 space-y-6 question-card">
                     <div class="question" data-category="env">
-                        <p class="font-semibold text-lg mb-2">I create a psychologically safe and supportive team culture where it's okay to fail.</p>
-                        <div class="flex flex-wrap -mx-2 rating-group">
-                           <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q9" value="1" class="mr-2" required>Strongly Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q9" value="2" class="mr-2">Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q9" value="3" class="mr-2">Neutral</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q9" value="4" class="mr-2">Agree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q9" value="5" class="mr-2">Strongly Agree</label>
+                        <p class="font-semibold text-lg mb-2">On my team, members feel safe to take calculated risks and discuss failures openly as learning opportunities.</p>
+                        <div class="flex items-center space-x-4 rating-group pt-2">
+                            <span class="text-sm text-gray-500 w-28 text-left">Strongly Disagree</span>
+                            <input type="range" name="q9" min="1" max="7" value="4" class="w-full slider" required>
+                            <span class="text-sm text-gray-500 w-28 text-right">Strongly Agree</span>
                         </div>
                     </div>
                     <div class="question" data-category="env">
-                        <p class="font-semibold text-lg mb-2">I actively manage team morale, address stress, and build trust through transparency.</p>
-                        <div class="flex flex-wrap -mx-2 rating-group">
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q10" value="1" class="mr-2" required>Strongly Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q10" value="2" class="mr-2">Disagree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q10" value="3" class="mr-2">Neutral</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q10" value="4" class="mr-2">Agree</label>
-                            <label class="w-full sm:w-1/5 p-2"><input type="radio" name="q10" value="5" class="mr-2">Strongly Agree</label>
+                        <p class="font-semibold text-lg mb-2">Team morale is consistently high, and issues like stress are addressed proactively and transparently.</p>
+                        <div class="flex items-center space-x-4 rating-group pt-2">
+                            <span class="text-sm text-gray-500 w-28 text-left">Strongly Disagree</span>
+                            <input type="range" name="q10" min="1" max="7" value="4" class="w-full slider" required>
+                            <span class="text-sm text-gray-500 w-28 text-right">Strongly Agree</span>
                         </div>
                     </div>
                 </div>
@@ -178,11 +195,23 @@
             <div class="bg-white rounded-lg shadow-lg p-8 results-card">
                 <h2 class="text-3xl font-bold text-center text-green-600 mb-4">Your Results</h2>
                 <div class="text-center">
-                    <p class="text-xl text-gray-600">Your total score is:</p>
-                    <p id="score" class="text-6xl font-extrabold text-indigo-600 my-4">0</p>
+                    <p class="text-xl text-gray-600">Your final score is:</p>
+                    <p id="score" class="text-6xl font-extrabold text-indigo-600 my-4">0%</p>
+                    <p id="fractionScore" class="text-base text-gray-400 mb-4"></p> <!-- Added fractional score display -->
                     <p id="feedback" class="text-lg text-gray-700 max-w-2xl mx-auto"></p>
                 </div>
-                <div class="mt-8 text-center">
+                
+                <!-- Category Summary Container -->
+                <div id="categorySummary" class="mt-8 pt-4 border-t border-gray-200">
+                    <!-- Summary will be injected here by JavaScript -->
+                </div>
+                <!-- End Category Summary Container -->
+
+                <div class="mt-8 text-center space-x-4">
+                    <!-- New Share Button -->
+                    <button onclick="shareResults()" id="shareButton" class="bg-indigo-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-300">
+                        Share My Results
+                    </button>
                     <button onclick="retakeQuiz()" class="bg-gray-200 text-gray-800 font-bold py-2 px-6 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition duration-300">
                         Retake Quiz
                     </button>
@@ -196,46 +225,155 @@
         document.getElementById('leadershipQuiz').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // --- Score Calculation ---
             const form = event.target;
             const formData = new FormData(form);
+            
+            const categoryMap = {
+                'q1': 'Technical Credibility', 'q2': 'Technical Credibility',
+                'q3': 'Growth & Development Support', 'q4': 'Growth & Development Support',
+                'q5': 'Clear Communication & Strategic Alignment', 'q6': 'Clear Communication & Strategic Alignment',
+                'q7': 'Autonomy & Trust', 'q8': 'Autonomy & Trust',
+                'q9': 'Positive Work Environment', 'q10': 'Positive Work Environment'
+            };
+
+            const categoryScores = {
+                'Technical Credibility': 0,
+                'Growth & Development Support': 0,
+                'Clear Communication & Strategic Alignment': 0,
+                'Autonomy & Trust': 0,
+                'Positive Work Environment': 0
+            };
+            const maxPerCategory = 14; // 2 questions * 7 points
             let totalScore = 0;
             let questionCount = 0;
-            
-            for (let value of formData.values()) {
-                totalScore += parseInt(value, 10);
+
+            // --- 1. Calculate Scores (Total and by Category) ---
+            for (const [name, value] of formData.entries()) {
+                const score = parseInt(value, 10);
+                totalScore += score;
                 questionCount++;
+
+                const categoryName = categoryMap[name];
+                if (categoryName) {
+                    categoryScores[categoryName] += score;
+                }
             }
 
-            // --- Display Results ---
-            document.getElementById('score').textContent = totalScore;
+            const maxScore = questionCount * 7; // 10 questions * 7 points
+            const percentageScore = Math.round((totalScore / maxScore) * 100); // Calculate percentage
 
-            // --- Feedback Logic ---
-            const maxScore = questionCount * 5; // 10 questions * 5 points
+            // --- 2. Display Total Results and Feedback (Updated for percentage) ---
+            document.getElementById('score').textContent = `${percentageScore}%`;
+            document.getElementById('fractionScore').textContent = `(${totalScore} / ${maxScore} points)`;
+
             let feedbackText = '';
             
-            if (totalScore >= maxScore * 0.85) { // 43-50
+            if (totalScore >= 60) { // 60-70
                 feedbackText = 'Excellent! Your self-assessment indicates a strong alignment with key engineering leadership qualities. You are likely creating a high-trust, high-impact environment. Keep reinforcing these positive behaviors.';
-            } else if (totalScore >= maxScore * 0.65) { // 33-42
+            } else if (totalScore >= 46) { // 46-59
                 feedbackText = 'Very good! You have a solid foundation in many leadership areas. Identify the categories where you scored lower and consider focusing your development efforts there to become even more effective.';
-            } else if (totalScore >= maxScore * 0.45) { // 23-32
+            } else if (totalScore >= 32) { // 32-45
                 feedbackText = 'Good starting point. Your results show an awareness of leadership principles, with clear opportunities for growth. Choose one or two key qualities to focus on improving over the next quarter.';
-            } else { // 10-22
+            } else { // 10-31
                 feedbackText = 'This is a valuable baseline. This assessment has highlighted several areas for significant development. Focusing on fundamentals like building trust and clear communication will have a major impact on your team\'s success.';
             }
 
             document.getElementById('feedback').textContent = feedbackText;
             
-            // --- Show/Hide Elements ---
+            // --- 3. Generate and Inject Category Summary HTML ---
+            let summaryHTML = '<h3 class="text-2xl font-semibold text-gray-700 mb-4">Category Breakdown</h3>';
+            summaryHTML += '<div class="space-y-4">';
+
+            for (const [category, score] of Object.entries(categoryScores)) {
+                const percentage = Math.round((score / maxPerCategory) * 100);
+                // Determine color based on score (Tailwind classes)
+                let colorClass = 'bg-red-500'; // Low score
+                if (percentage > 85) {
+                    colorClass = 'bg-green-600'; // High score
+                } else if (percentage > 60) {
+                    colorClass = 'bg-yellow-500'; // Medium score
+                }
+                
+                summaryHTML += `
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+                        <p class="font-medium text-gray-700 sm:w-1/2">${category}</p>
+                        <div class="sm:w-1/2 flex items-center mt-1 sm:mt-0">
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="h-3 rounded-full transition-all duration-500 ease-out ${colorClass}" style="width: ${percentage}%"></div>
+                            </div>
+                            <span class="ml-4 font-bold text-sm text-gray-800 w-16 text-right">${score}/${maxPerCategory}</span>
+                        </div>
+                    </div>
+                `;
+            }
+            summaryHTML += '</div>';
+
+            document.getElementById('categorySummary').innerHTML = summaryHTML;
+
+
+            // --- 4. Show/Hide Elements ---
             document.getElementById('leadershipQuiz').classList.add('hidden');
             document.getElementById('results').classList.remove('hidden');
             window.scrollTo(0, document.body.scrollHeight);
         });
 
+        // Function for Web Share API and Clipboard Fallback
+        function shareResults() {
+            const percentage = document.getElementById('score').textContent;
+            const fractional = document.getElementById('fractionScore').textContent.match(/\((.*?)\)/)[1].trim(); // Extract (65 / 70 points)
+            const quizTitle = document.title;
+            // Using the link specified in the user request
+            const quizLink = 'https://glennsantos.com/leader-quiz.html'; 
+            
+            if (navigator.share) {
+                // Use Web Share API for native sharing
+                navigator.share({
+                    title: quizTitle,
+                    text: `I just completed the ${quizTitle} and scored ${percentage}! My score was ${fractional}. Find out your score:`,
+                    url: quizLink,
+                }).catch((error) => {
+                    // This often happens if the user cancels the share dialog
+                    if (error.name !== 'AbortError') {
+                        console.log('Error sharing:', error);
+                    }
+                });
+            } else {
+                // Fallback: Copy to clipboard
+                const shareText = `My score on the Engineering Leader Self-Assessment is ${percentage} (${fractional}). Check out the quiz here: ${quizLink}`;
+                
+                // Create a temporary element to copy text
+                const tempInput = document.createElement('textarea');
+                tempInput.value = shareText;
+                // Position off-screen
+                tempInput.style.position = 'fixed'; 
+                tempInput.style.opacity = '0';
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                
+                try {
+                    document.execCommand('copy');
+                    
+                    // Simple, non-intrusive notification
+                    const notification = document.createElement('div');
+                    notification.textContent = 'Score and link copied to clipboard!';
+                    notification.className = 'fixed bottom-4 right-4 bg-indigo-600 text-white p-3 rounded-lg shadow-xl transition-opacity duration-300';
+                    document.body.appendChild(notification);
+                    setTimeout(() => notification.remove(), 3000);
+                    
+                } catch (err) {
+                    console.error('Could not copy text: ', err);
+                }
+                document.body.removeChild(tempInput);
+            }
+        }
+
         function retakeQuiz() {
             document.getElementById('leadershipQuiz').reset();
             document.getElementById('leadershipQuiz').classList.remove('hidden');
             document.getElementById('results').classList.add('hidden');
+            // Clear the summary before retaking
+            document.getElementById('categorySummary').innerHTML = ''; 
+            document.getElementById('fractionScore').textContent = ''; // Clear fractional score
             window.scrollTo(0, 0);
         }
     </script>
