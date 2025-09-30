@@ -260,6 +260,7 @@ section h2 {
 #about-me-section h2 {
   color: var(--email-orange);
   font-size: 3em;
+  line-height: 1em;
 }
 #about-me-intro-section {
   font-size: 0.8em;
