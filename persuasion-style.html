@@ -376,6 +376,26 @@
             text-align: center;
             font-weight: 600;
         }
+
+        /* Make sliders span full width on mobile */
+        @media (max-width: 640px) {
+            .scale-container {
+                display: block;            /* let slider take full line */
+                position: relative;
+                padding-bottom: 22px;      /* space for end labels */
+            }
+            .scale-label {
+                position: absolute;
+                bottom: 0;
+                min-width: 0;             /* remove fixed label width */
+                font-size: 12px;
+            }
+            .scale-label.left { left: 0; }
+            .scale-label.right { right: 0; }
+            .range-input {
+                width: 100%;               /* occupy full content width */
+            }
+        }
     </style>
 </head>
 <body>
@@ -491,7 +511,6 @@
                             <input type="range" min="1" max="7" step="1" value="${defaultValue}" name="q${q.id}" id="q${q.id}" class="range-input" aria-label="Question ${index + 1} response">
                             <span class="scale-label right">Strongly Agree</span>
                         </div>
-                        <div class="range-value">Selected: <span id="q${q.id}-value">${defaultValue}</span></div>
                     </div>
                 `;
                 container.innerHTML += questionHTML;
