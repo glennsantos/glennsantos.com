@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persuasion Style Self-Assessment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .intro {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .intro p {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .question-block {
+            margin-bottom: 12px; /* tighter spacing, no visual separators */
+            padding: 0; /* remove block padding */
+            background: transparent; /* remove background card */
+            border-radius: 0; /* remove rounded corners */
+            transition: none;
+        }
+        
+        .question-block:hover { /* disable hover styles */
+            background: transparent;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .question-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .question-text {
+            font-size: 17px;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+        
+        .scale-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .scale-label {
+            font-size: 12px;
+            color: #6c757d;
+            font-weight: 500;
+            min-width: 90px;
+        }
+        
+        .scale-label.left {
+            text-align: left;
+        }
+        
+        .scale-label.right {
+            text-align: right;
+        }
+        
+        .scale-options {
+            display: flex;
+            gap: 12px;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .scale-option {
+            position: relative;
+        }
+        
+        .scale-option input[type="radio"] {
+            appearance: none;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #dee2e6;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .scale-option input[type="radio"]:hover {
+            border-color: #667eea;
+            transform: scale(1.1);
+        }
+        
+        .scale-option input[type="radio"]:checked {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #667eea;
+        }
+        
+        .scale-option input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        .scale-option label {
+            display: block;
+            text-align: center;
+            font-size: 11px;
+            color: #6c757d;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .results {
+            display: none;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        
+        .results.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .results h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .result-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .result-item h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .result-explainer {
+            color: #495057;
+            font-size: 14px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .result-bar {
+            background: #e9ecef;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 10px;
+            position: relative;
+        }
+        
+        .result-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .dominant-style {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .dominant-style h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .dominant-style p {
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        
+        .reset-btn {
+            background: #6c757d;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .reset-btn:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .share-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background: #667eea;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            font-size: 14px;
+        }
+
+        /* Slider styles for 1–7 scale */
+        .range-input {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 9999px;
+            outline: none;
+            transition: background 0.2s ease;
+        }
+        .range-input:hover { background: #dee2e6; }
+        .range-input:active { cursor: grabbing; }
+
+        .range-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        .range-input::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .range-value {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #6c757d;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚪 Five Doors of Influence</h1>
+            <p>Discover Your Default Persuasion Style</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <p>This assessment helps you identify which of the five persuasion styles you naturally default to: <strong>Rationalising, Asserting, Negotiating, Inspiring, or Bridging</strong>. Rate each statement based on how strongly you agree (1 = Strongly Disagree, 7 = Strongly Agree).</p>
+            </div>
+            
+            <form id="quizForm">
+                <div id="questionsContainer"></div>
+                <button type="submit" class="submit-btn">Calculate My Persuasion Style</button>
+            </form>
+
+            <div id="results" class="results">
+                <h2>Your Persuasion Style Profile</h2>
+                <div id="dominantStyle" class="dominant-style"></div>
+                <div id="scoreBreakdown"></div>
+                <div class="actions">
+                    <button id="shareButton" onclick="shareResults()" class="share-btn">Share My Results</button>
+                    <button onclick="resetQuiz()" class="reset-btn">Take Quiz Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store last computed results for sharing
+        window.lastResults = null;
+
+        const questions = [
+            { id: 1, style: 'Rationalising', text: 'When making my case, I prioritize presenting data and documented evidence.' },
+            { id: 2, style: 'Rationalising', text: 'I organize my arguments with a structured flow from problem to solution.' },
+            { id: 3, style: 'Rationalising', text: 'I prepare specific metrics and benchmarks when I need to convince someone.' },
+            { id: 4, style: 'Asserting', text: 'I state my views clearly without hedging or excessive qualification.' },
+            { id: 5, style: 'Asserting', text: 'I value maintaining my position once I\'ve determined the right course.' },
+            { id: 6, style: 'Asserting', text: 'I communicate my opinions with conviction and expect direct responses.' },
+            { id: 7, style: 'Negotiating', text: 'I seek solutions that benefit all parties involved.' },
+            { id: 8, style: 'Negotiating', text: 'I\'m willing to modify my approach to reach agreement.' },
+            { id: 9, style: 'Negotiating', text: 'I ask questions to understand what others truly need.' },
+            { id: 10, style: 'Inspiring', text: 'I connect proposals to larger goals and values.' },
+            { id: 11, style: 'Inspiring', text: 'I use examples and imagery to illustrate potential outcomes.' },
+            { id: 12, style: 'Inspiring', text: 'I focus on the broader impact when discussing ideas.' },
+            { id: 13, style: 'Bridging', text: 'I reference examples of others who have succeeded with similar approaches.' },
+            { id: 14, style: 'Bridging', text: 'I establish common ground before presenting my perspective.' },
+            { id: 15, style: 'Bridging', text: 'I offer support or resources before requesting commitment.' }
+        ];
+
+        const styleDescriptions = {
+            Rationalising: {
+                title: "Rationalising: The Door of Logic",
+                description: "You naturally persuade through facts, evidence, and analysis. You appeal to those comforted by structure and clarity, and you build trust through well-organized thinking and verified data. Your strength is in bringing clarity and reducing risk through logical reasoning.",
+                color: "#3498db"
+            },
+            Asserting: {
+                title: "Asserting: The Door of Conviction",
+                description: "You persuade through confidence, authority, and clarity. You value decisiveness and speak directly without hesitation. Your strength is in providing clear direction and respecting others' time with concise, firm communication.",
+                color: "#e74c3c"
+            },
+            Negotiating: {
+                title: "Negotiating: The Door of Balance",
+                description: "You persuade by finding common ground and creating win-win solutions. You're pragmatic and flexible, treating conversations as joint problem-solving opportunities. Your strength is in building mutually beneficial outcomes and maintaining collaborative relationships.",
+                color: "#f39c12"
+            },
+            Inspiring: {
+                title: "Inspiring: The Door of Vision",
+                description: "You persuade through story, metaphor, and imagination. You connect ideas to larger purposes and call people to something beyond the practical. Your strength is in creating meaning and helping others visualize possibilities that energize and motivate.",
+                color: "#9b59b6"
+            },
+            Bridging: {
+                title: "Bridging: The Door of Relationship",
+                description: "You persuade through connection and social proof. You build trust by involving others and showing that trusted peers have walked this path before. Your strength is in creating rapport and leveraging shared experiences and relationships.",
+                color: "#1abc9c"
+            }
+        };
+
+        // One‑sentence explanations for each style (based on the Five Doors of Influence)
+        const styleOneLiners = {
+            Rationalising: "Persuades by presenting clear logic, facts, and structured evidence.",
+            Asserting: "Persuades through confident, decisive statements and firm conviction.",
+            Negotiating: "Persuades by seeking trade-offs and crafting win–win agreements.",
+            Inspiring: "Persuades by connecting ideas to purpose, meaning, and possibility.",
+            Bridging: "Persuades by building rapport and leveraging trusted relationships and examples."
+        };
+
+        // Shuffle questions
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // Render questions (now with a 1–7 slider per question)
+        function renderQuestions() {
+            const shuffled = shuffleArray(questions);
+            const container = document.getElementById('questionsContainer');
+            
+            shuffled.forEach((q, index) => {
+                const defaultValue = 4;
+                const questionHTML = `
+                    <div class="question-block">
+                        <div class="question-text">${q.text}</div>
+                        <div class="scale-container">
+                            <span class="scale-label left">Strongly Disagree</span>
+                            <input type="range" min="1" max="7" step="1" value="${defaultValue}" name="q${q.id}" id="q${q.id}" class="range-input" aria-label="Question ${index + 1} response">
+                            <span class="scale-label right">Strongly Agree</span>
+                        </div>
+                        <div class="range-value">Selected: <span id="q${q.id}-value">${defaultValue}</span></div>
+                    </div>
+                `;
+                container.innerHTML += questionHTML;
+            });
+
+            // Attach input listeners to update displayed values
+            container.querySelectorAll('.range-input').forEach(input => {
+                const valueEl = document.getElementById(`${input.id}-value`);
+                if (!valueEl) return;
+                input.addEventListener('input', () => {
+                    valueEl.textContent = input.value;
+                });
+            });
+        }
+
+        // Initialize
+        renderQuestions();
+
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const scores = {
+                Rationalising: 0,
+                Asserting: 0,
+                Negotiating: 0,
+                Inspiring: 0,
+                Bridging: 0
+            };
+            
+            // Calculate scores from slider values for original question IDs
+            questions.forEach(q => {
+                const input = document.querySelector(`input[name="q${q.id}"]`);
+                if (input) {
+                    scores[q.style] += parseInt(input.value, 10);
+                }
+            });
+            
+            // Find dominant style
+            let dominantStyle = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            
+            // Display results
+            displayResults(scores, dominantStyle);
+        });
+
+        function displayResults(scores, dominantStyle) {
+            const resultsDiv = document.getElementById('results');
+            const dominantStyleDiv = document.getElementById('dominantStyle');
+            const scoreBreakdownDiv = document.getElementById('scoreBreakdown');
+            
+            // Display dominant style
+            const styleInfo = styleDescriptions[dominantStyle];
+            dominantStyleDiv.innerHTML = `
+                <h3>🎯 Your Dominant Style: ${dominantStyle}</h3>
+                <p>${styleInfo.description}</p>
+            `;
+            
+            // Sort scores for display
+            const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+            
+            // Display score breakdown
+            let breakdownHTML = '';
+            sortedScores.forEach(([style, score]) => {
+                const percentage = (score / 21) * 100;
+                const color = styleDescriptions[style].color;
+                breakdownHTML += `
+                    <div class="result-item">
+                        <h3>${style}</h3>
+                        <p class="result-explainer">${styleOneLiners[style]}</p>
+                        <div class="result-bar">
+                            <div class="result-bar-fill" style="width: ${percentage}%; background: ${color};">
+                                ${score}/21
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            scoreBreakdownDiv.innerHTML = breakdownHTML;
+            
+            // Keep latest results for sharing
+            window.lastResults = { scores, dominantStyle };
+
+            // Show results and hide form
+            document.getElementById('quizForm').style.display = 'none';
+            resultsDiv.classList.add('show');
+            
+            // Scroll to results
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function resetQuiz() {
+            document.getElementById('quizForm').reset();
+            document.getElementById('questionsContainer').innerHTML = '';
+            renderQuestions();
+            document.getElementById('quizForm').style.display = 'block';
+            document.getElementById('results').classList.remove('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Web Share API with clipboard fallback
+        function shareResults() {
+            const quizTitle = document.title;
+            const quizLink = 'https://glennsantos.com/persuasion-style.html';
+            const res = window.lastResults;
+
+            // Build share text
+            let shareText = `I just completed the ${quizTitle}.`;
+            if (res && res.dominantStyle) {
+                // Compute top 3 breakdown
+                const top = Object.entries(res.scores)
+                    .sort((a,b) => b[1] - a[1])
+                    .slice(0, 3)
+                    .map(([style, score]) => `${style} ${score}/21`)
+                    .join(', ');
+                shareText += ` My dominant style is ${res.dominantStyle}.`;
+            }
+            shareText += ` Find your style: ${quizLink}`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: quizTitle,
+                    text: shareText,
+                    url: quizLink,
+                }).catch((error) => {
+                    if (error && error.name !== 'AbortError') {
+                        console.log('Error sharing:', error);
+                    }
+                });
+            } else {
+                // Clipboard fallback
+                const temp = document.createElement('textarea');
+                temp.value = shareText;
+                temp.style.position = 'fixed';
+                temp.style.opacity = '0';
+                document.body.appendChild(temp);
+                temp.select();
+                try {
+                    document.execCommand('copy');
+                    const toast = document.createElement('div');
+                    toast.className = 'toast';
+                    toast.textContent = 'Results and link copied to clipboard!';
+                    document.body.appendChild(toast);
+                    setTimeout(() => toast.remove(), 3000);
+                } catch (err) {
+                    console.error('Could not copy text: ', err);
+                }
+                document.body.removeChild(temp);
+            }
+        }
+    </script>
+</body>
+</html>
