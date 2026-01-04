@@ -363,6 +363,11 @@ section h2 {
   border-color: var(--linkedin-blue);
   box-shadow: 5px 5px 0px 2px var(--linkedin-blue);
 }
+#links-section .link-github {
+  color: MediumPurple;
+  border-color: MediumPurple;
+  box-shadow: 5px 5px 0px 2px MediumPurple;
+}
 #links-section .link-resume {
   color: var(--glassdoor-green);
   border-color: var(--glassdoor-green);
