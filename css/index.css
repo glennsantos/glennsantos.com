@@ -304,14 +304,15 @@ section {
 }
 
 .modal-content {
-  background: var(--background-color);
-  padding: 2em;
+  background: #eee !important;
+  padding: 1.5em 2em;
   border-radius: 12px;
   max-width: 500px;
   width: 90%;
   position: relative;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   animation: modalSlideIn 0.3s ease;
+  overflow: visible;
 }
 
 @keyframes modalSlideIn {
@@ -327,19 +328,26 @@ section {
 
 .modal-close {
   position: absolute;
-  top: 0.5em;
-  right: 0.75em;
-  background: none;
-  border: none;
-  font-size: 2em;
+  top: -12px;
+  right: -12px;
+  width: 32px;
+  height: 32px;
+  background: #000;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-size: 1.2em;
+  line-height: 1;
   cursor: pointer;
-  color: var(--text-color);
-  opacity: 0.6;
-  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s, transform 0.2s;
 }
 
 .modal-close:hover {
-  opacity: 1;
+  background: #555;
 }
 
 #modal-title {
@@ -355,9 +363,6 @@ section {
 }
 
 /* Force readable colors in modal regardless of theme */
-.modal-content {
-  background: #fafafa;
-}
 
 .modal-content #modal-title {
   color: #111;
@@ -368,7 +373,7 @@ section {
 }
 
 .modal-content .modal-close {
-  color: #333;
+  color: #fff;
 }
 section h2 {
   color: var(--text-title-color);
@@ -553,6 +558,99 @@ article li {
 }
 #projects-section {
   display: flex;
+  flex-direction: column;
+}
+
+#see-more-wrapper {
+  text-align: center;
+  margin: 2em 0;
+}
+
+#see-more-link {
+  display: inline-block;
+  padding: 0.75em 1.5em;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--text-hover-color);
+  background-color: var(--light-accent-color);
+  border-radius: 8px;
+  box-shadow: 5px 5px 0px 2px var(--light-accent-color), 0px 0px 0px 2px var(--text-color);
+  transition: all 0.3s;
+}
+
+#see-more-link:hover {
+  box-shadow: 0px 0px 0px 0px;
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+#projects-wrapper-more {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3em;
+}
+
+#projects-wrapper-more.hidden {
+  display: none;
+}
+
+#projects-wrapper-more > div {
+  background-color: var(--background-color);
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0px 0px 0px 5px var(--light-accent-color),
+    15px 15px 0px 5px var(--light-accent-color);
+}
+
+#projects-wrapper-more > div:hover {
+  box-shadow: 0px 0px 0px 5px, 0px 0px 0px 5px;
+  transition: all 0.4s;
+}
+
+#projects-wrapper-more > div > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 1em;
+}
+
+#projects-wrapper-more > div h3 em {
+  font-size: 0.7em;
+  font-weight: 400;
+  word-wrap: none;
+  white-space: nowrap;
+}
+
+#projects-wrapper-more > div h3 a:hover {
+  text-decoration: underline;
+  opacity: 0.5;
+  position: relative;
+  top: -2px;
+}
+
+#projects-wrapper-more > div > div > h3 {
+  font-size: 1.8em;
+  margin: 0;
+}
+
+#projects-wrapper-more img {
+  order: -1;
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: bottom center;
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  box-shadow: none;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  border-bottom: 1px solid #f4f4f4;
 }
 
 #projects-wrapper {
@@ -634,6 +732,18 @@ article li {
     height: auto;
     margin: 0;
   }
+  #projects-wrapper-more {
+    grid-template-columns: 1fr;
+  }
+  #projects-wrapper-more > div {
+    flex-direction: column;
+    align-items: center;
+  }
+  #projects-wrapper-more img {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
 }
 .tags {
   display: flex;
@@ -687,7 +797,7 @@ article li {
   opacity: 1;
 }
 
-.active > * {
+.active > *:not(.modal-overlay):not(.modal-content):not(.modal-close) {
   color: var(--background-color) !important;
   background-color: var(--text-color) !important;
   padding: 0.5em;
@@ -695,7 +805,7 @@ article li {
   box-shadow: 1px 1px 0px 2px var(--text-color) !important;
 }
 
-.active > *:hover {
+.active > *:hover:not(.modal-overlay):not(.modal-content):not(.modal-close) {
   box-sizing: border-box;
   background-color: transparent;
   padding: 0.5em;

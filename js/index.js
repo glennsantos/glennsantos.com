@@ -119,3 +119,20 @@ function initServiceModal() {
 }
 
 initServiceModal();
+
+// See More Projects toggle
+function initSeeMore() {
+  const seeMoreLink = document.getElementById('see-more-link');
+  const moreProjects = document.getElementById('projects-wrapper-more');
+  const seeMoreWrapper = document.getElementById('see-more-wrapper');
+
+  if (!seeMoreLink || !moreProjects) return;
+
+  seeMoreLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    moreProjects.classList.remove('hidden');
+    seeMoreWrapper.style.display = 'none';
+  });
+}
+
+initSeeMore();
