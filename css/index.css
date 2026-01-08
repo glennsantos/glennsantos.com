@@ -253,6 +253,123 @@ section {
 #about-me-section {
   line-height: 1.7em;
 }
+
+/* Services Section */
+#services-section {
+  margin: 3em 0;
+}
+
+#services-section h2 {
+  margin-bottom: 1em;
+}
+
+#services-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.service-item {
+  padding: 0.6em 1.2em;
+  border: 2px solid var(--light-accent-color);
+  border-radius: 8px;
+  box-shadow: 5px 5px 0px 2px var(--light-accent-color);
+  font-size: 0.95em;
+  transition: all 0.3s;
+}
+
+.service-item:hover {
+  box-shadow: 0px 0px 0px 0px;
+  background-color: var(--light-accent-color);
+  color: var(--text-hover-color);
+  cursor: pointer;
+}
+
+/* Service Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--background-color);
+  padding: 2em;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.5em;
+  right: 0.75em;
+  background: none;
+  border: none;
+  font-size: 2em;
+  cursor: pointer;
+  color: var(--text-color);
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.modal-close:hover {
+  opacity: 1;
+}
+
+#modal-title {
+  margin: 0 0 0.75em 0;
+  color: var(--text-title-color);
+  font-size: 1.5em;
+}
+
+#modal-description {
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Force readable colors in modal regardless of theme */
+.modal-content {
+  background: #fafafa;
+}
+
+.modal-content #modal-title {
+  color: #111;
+}
+
+.modal-content #modal-description {
+  color: #333;
+}
+
+.modal-content .modal-close {
+  color: #333;
+}
 section h2 {
   color: var(--text-title-color);
 }

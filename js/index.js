@@ -76,3 +76,46 @@ function initThemeToggle() {
 
 // Initialize on load (script is at end of body)
 initThemeToggle();
+
+// Service Modal functionality
+function initServiceModal() {
+  const modal = document.getElementById('service-modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDescription = document.getElementById('modal-description');
+  const closeBtn = document.querySelector('.modal-close');
+  const serviceItems = document.querySelectorAll('.service-item');
+
+  if (!modal || !serviceItems.length) return;
+
+  // Open modal on service click
+  serviceItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const title = item.textContent;
+      const description = item.dataset.description;
+      modalTitle.textContent = title;
+      modalDescription.textContent = description;
+      modal.classList.add('active');
+    });
+  });
+
+  // Close modal
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  // Close on overlay click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      modal.classList.remove('active');
+    }
+  });
+}
+
+initServiceModal();
