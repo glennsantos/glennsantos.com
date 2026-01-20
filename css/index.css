@@ -9,6 +9,7 @@
   --blue-color: #2980b9;
   /* Brand colors */
   --linkedin-blue: #0A66C2;
+  --calendar-yellow: #FFC107;
   --glassdoor-green: #0CAA41;
   --email-orange: #FF8A00;
 }
@@ -485,6 +486,11 @@ section h2 {
   border-color: var(--linkedin-blue);
   box-shadow: 5px 5px 0px 2px var(--linkedin-blue);
 }
+#links-section .link-meeting {
+  color: var(--calendar-yellow);
+  border-color: var(--calendar-yellow);
+  box-shadow: 5px 5px 0px 2px var(--calendar-yellow);
+}
 #links-section .link-github {
   color: MediumPurple;
   border-color: MediumPurple;
@@ -499,6 +505,8 @@ section h2 {
 /* Keep brand color on hover */
 #links-section .link-email:hover { color: var(--email-orange); border-color: var(--email-orange); }
 #links-section .link-linkedin:hover { color: var(--linkedin-blue); border-color: var(--linkedin-blue); }
+#links-section .link-meeting:hover { color: var(--calendar-yellow); border-color: var(--calendar-yellow); }
+#links-section .link-github:hover { color: MediumPurple; border-color: MediumPurple; }
 #links-section .link-resume:hover { color: var(--glassdoor-green); border-color: var(--glassdoor-green); }
 
 article {
